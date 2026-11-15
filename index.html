@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English for Life · маршрут</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+/* Dopamine minimalism: white space, black type, four flat candy colours (one per module). Big rounded shapes, no gradients, no borders unless needed. */
+:root{
+  --bg:#FFFFFF; --surface:#F6F5F2; --ink:#111114; --muted:#5A5A66; --line:#E7E5DF;
+  --c1:#FF3D8B; --o1:#111114; --t1:#FFE5F0;
+  --c2:#2F5BFF; --o2:#FFFFFF; --t2:#E3EAFF;
+  --c3:#FFC800; --o3:#111114; --t3:#FFF4C2;
+  --c4:#FF7A1A; --o4:#111114; --t4:#FFE8D6;
+  --c0:#8B5CF6; --o0:#FFFFFF; --t0:#EEE7FF;
+  --pop:#C6FF3D; --on-pop:#111114; --black:#111114; --on-black:#FFFFFF; --tag:#3B3B45;
+  --display:"Unbounded","Manrope",Arial,sans-serif; --font:"Manrope","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0C0C10; --surface:#17171D; --ink:#F5F4F0; --muted:#A8A8B5; --line:#2A2A33;
+  --t1:#3A1626; --t2:#161F45; --t3:#3A3008; --t4:#3D200B; --t0:#261B45;
+  --black:#F5F4F0; --on-black:#111114; --tag:#D5D5DE; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0C0C10; --surface:#17171D; --ink:#F5F4F0; --muted:#A8A8B5; --line:#2A2A33;
+  --t1:#3A1626; --t2:#161F45; --t3:#3A3008; --t4:#3D200B; --t0:#261B45;
+  --black:#F5F4F0; --on-black:#111114; --tag:#D5D5DE; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55}
+*{box-sizing:border-box}
+h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display);letter-spacing:-.01em}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--c2);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--tag)}
+.m1{--c:var(--c1);--o:var(--o1);--t:var(--t1)} .m2{--c:var(--c2);--o:var(--o2);--t:var(--t2)}
+.m3{--c:var(--c3);--o:var(--o3);--t:var(--t3)} .m4{--c:var(--c4);--o:var(--o4);--t:var(--t4)}
+.m0{--c:var(--c0);--o:var(--o0);--t:var(--t0)}
+
+.mast .wrap{padding-block:56px 24px;display:flex;flex-direction:column;gap:22px}
+.mast h1{font-size:clamp(32px,7.2vw,68px);line-height:1.04;font-weight:800}
+.mast h1 mark{background:var(--pop);color:var(--on-pop);padding:0 .18em;border-radius:.22em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.mast p{color:var(--muted);max-width:60ch;font-size:19px}
+.mast p b{color:var(--ink);font-weight:700}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.fact{border-radius:22px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;min-width:0;background:var(--c);color:var(--o)}
+.fact b{font-size:19px;font-weight:800}
+.fact span{font-size:11px;font-weight:800;letter-spacing:.16em}
+.prog{display:flex;flex-direction:column;gap:10px;background:var(--surface);border-radius:22px;padding:18px 20px}
+.bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c1);border-radius:99px;width:0;transition:width .7s cubic-bezier(.2,.9,.2,1)}
+.proghead{display:flex;justify-content:space-between;align-items:baseline}.proghead b{font-family:var(--display);font-size:22px;font-weight:800}
+.ticks{display:grid;grid-template-columns:repeat(43,minmax(0,1fr));gap:2px}
+.ticks i{height:16px;border-radius:4px;background:var(--c);opacity:.22}
+.ticks i.on{opacity:1}
+.ticks i.now{opacity:1;outline:2.5px solid var(--ink);outline-offset:1.5px}
+.prog small{color:var(--muted);font-size:15px;font-weight:600}
+
+section .wrap{padding-block:56px 8px;display:flex;flex-direction:column;gap:22px}
+section h2{font-size:clamp(24px,4.4vw,38px);font-weight:800;line-height:1.1}
+.lead{color:var(--muted);max-width:62ch}
+
+.route{display:flex;flex-direction:column;gap:14px}
+.stop{display:grid;grid-template-columns:76px minmax(0,1fr);gap:18px}
+.rail{display:flex;flex-direction:column;align-items:center;gap:8px}
+.dot{width:72px;height:72px;border-radius:50%;background:var(--c);color:var(--o);font-family:var(--display);font-weight:800;font-size:28px;display:flex;align-items:center;justify-content:center;flex:none;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.stop:hover .dot{transform:scale(1.08) rotate(-6deg)}
+.dot.fin{background:var(--pop);color:var(--on-pop)}
+.rail i{flex:1;width:6px;background:var(--c);border-radius:6px;min-height:14px}
+.mod{background:var(--t);border-radius:28px;min-width:0}
+.mod>button{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;width:100%;padding:26px 28px;cursor:pointer;border-radius:28px}
+.mod>button:focus-visible{outline:3px solid var(--c2);outline-offset:3px}
+.modhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px}
+.modhead h3{font-size:clamp(20px,3.2vw,26px);font-weight:800}
+.when{font-size:13px;font-weight:800;background:var(--c);color:var(--o);border-radius:99px;padding:6px 12px}
+.mod p{color:var(--ink);max-width:64ch}
+.more{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px;color:var(--ink)}
+.more svg{transition:transform .2s}
+.mod[data-open="1"] .more svg{transform:rotate(180deg)}
+.modbody{padding:0 28px 26px;display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:0;background:var(--bg);border-radius:99px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;color:var(--ink);transition:transform .15s}
+.chip:hover{transform:translateY(-2px);background:var(--c);color:var(--o)}
+.chip.h{background:var(--c0);color:var(--o0)}
+.finish{background:var(--black);color:var(--on-black);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.finish .eyebrow{color:var(--on-black);opacity:.75}
+.finish p{font-size:clamp(18px,2.6vw,22px);font-weight:700;line-height:1.4}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{border:0;background:var(--surface);border-radius:99px;padding:10px 18px;font-size:14px;font-weight:800;cursor:pointer;color:var(--ink)}
+.tab[aria-pressed="true"]{background:var(--black);color:var(--on-black)}
+.list{display:flex;flex-direction:column;gap:8px}
+.band{margin-top:14px;display:inline-flex;align-self:flex-start;background:var(--c);color:var(--o);border-radius:99px;padding:7px 14px;font-size:12px;font-weight:800;letter-spacing:.12em}
+.band:first-child{margin-top:0}
+.row{background:var(--surface);border-radius:20px;overflow:hidden}
+.row>button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:14px 84px minmax(0,1fr) auto;gap:6px 14px;align-items:center;width:100%;padding:16px 20px;cursor:pointer}
+.row>button::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--c)}
+.row>button:hover{background:var(--t)}
+.row>button:focus-visible{outline:3px solid var(--c2);outline-offset:-3px}
+.row.next{background:var(--t)}
+.date{font-variant-numeric:tabular-nums;font-size:14px;font-weight:800;color:var(--ink);display:flex;flex-direction:column;line-height:1.25}
+.date small{font-weight:600;font-size:12px;color:var(--muted)}
+.ttl{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ttl b{font-size:16.5px;font-weight:800}
+.ttl span{font-size:14.5px;color:var(--muted)}
+.badge{font-size:12px;font-weight:800;border-radius:99px;padding:5px 11px;white-space:nowrap;background:var(--bg);color:var(--muted)}
+.badge.done{background:var(--black);color:var(--on-black)}
+.badge.nx{background:var(--pop);color:var(--on-pop)}
+.det{padding:6px 20px 22px 132px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 24px}
+.det div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.det dt{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--tag);text-transform:uppercase}
+.det dd{margin:0;font-size:15px;white-space:pre-line}
+@media (max-width:620px){
+  .row>button{grid-template-columns:14px 62px minmax(0,1fr)}
+  .badge{grid-column:3;justify-self:start}
+  .det{padding-left:20px}
+  .stop{grid-template-columns:48px minmax(0,1fr);gap:10px}
+  .dot{width:48px;height:48px;font-size:19px}
+  .mod>button{padding:20px}.modbody{padding:0 20px 20px}
+}
+.perks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.perk{background:var(--t);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.perk b{font-family:var(--display);font-size:16px;font-weight:800}
+.perk span{font-size:15px;color:var(--ink)}
+footer .wrap{padding-block:36px 48px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion: reduce){ .bar i,.dot,.chip{transition:none} .stop:hover .dot{transform:none} }
+
+/* --- road map --- */
+:root{--road:#111114;--road-dash:#FFFFFF}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--road:#2E2E39;--road-dash:#8A8A99} }
+:root[data-theme="dark"]{--road:#2E2E39;--road-dash:#8A8A99}
+.mapbox{background:var(--surface);border-radius:32px;padding:14px;overflow:hidden}
+#map{display:block;width:100%;height:auto}
+#map .stop{cursor:pointer;outline:none}
+#map .stop circle.b{stroke:var(--surface);stroke-width:4;transition:r .18s}
+#map .stop:hover circle.b,#map .stop:focus-visible circle.b{r:22}
+#map .stop.sel circle.ring{stroke:var(--ink);stroke-width:4;fill:none}
+#map .stop.dim{opacity:.22}
+#map .stop text{font:800 12px var(--font);pointer-events:none}
+#map .pulse{fill:none;stroke:var(--pop);stroke-width:5;animation:pulse 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.9);opacity:0}}
+#map .lab text{font:800 12.5px var(--font)}
+#map .here text{font:800 11.5px var(--font)}
+@media (prefers-reduced-motion: reduce){ #map .pulse{animation:none} #map .stop circle.b{transition:none} }
+.card{border-radius:28px;background:var(--t);padding:26px 28px;display:flex;flex-direction:column;gap:14px}
+.cardtop{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{font-size:12.5px;font-weight:800;border-radius:99px;padding:6px 12px;background:var(--c);color:var(--o)}
+.pill.q{background:var(--bg);color:var(--ink)}
+.card h3{font-size:clamp(20px,3.4vw,28px);font-weight:800}
+.card .topic{color:var(--ink);max-width:64ch}
+.card .det{padding:0}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav button{border:0;border-radius:99px;padding:11px 18px;font-weight:800;font-size:14px;cursor:pointer;background:var(--black);color:var(--on-black)}
+.nav button[disabled]{opacity:.3;cursor:default}
+.hint{font-size:14px;color:var(--muted);font-weight:600}
+/* --- can-do checklist --- */
+.cans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.can{background:var(--t);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.can h3{font-size:16px;font-weight:800;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.can h3 span{font:800 12.5px var(--font);background:var(--c);color:var(--o);border-radius:99px;padding:5px 10px;white-space:nowrap}
+.can label{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start;font-size:15px;cursor:pointer}
+.can input{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:9px;border:2.5px solid var(--ink);background:var(--bg);margin:0;cursor:pointer;display:grid;place-content:center}
+.can input:checked{background:var(--c);border-color:var(--c)}
+.can input:checked::after{content:"";width:11px;height:6px;border-left:3px solid var(--o);border-bottom:3px solid var(--o);transform:rotate(-45deg) translateY(-1px)}
+.can input:checked+span{text-decoration:line-through;text-decoration-thickness:2px;opacity:.7}
+.total{font-family:var(--display);font-weight:800;font-size:clamp(20px,3.4vw,28px)}
+.total mark{background:var(--pop);color:var(--on-pop);padding:0 .25em;border-radius:.25em}
+.nextstage{background:var(--black);color:var(--on-black);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.nextstage .eyebrow{color:var(--on-black);opacity:.75}
+.nextstage p{font-size:clamp(18px,2.6vw,22px);font-weight:700;line-height:1.4;max-width:60ch}
+</style>
+
+<header class="mast"><div class="wrap">
+  <div class="eyebrow">English for Life · личный маршрут</div>
+  <h1>Анастасия и Антон: ваш маршрут, <mark>этап&nbsp;1</mark></h1>
+  <p><b>Авторская программа, написанная для вас.</b> Она живая: темп, темы и порядок уроков подстраиваются под то, как вы идёте, поэтому план может меняться. Это первый этап пути: за ним следующий уровень и новый маршрут.</p>
+  <div class="facts">
+    <div class="fact m1"><span>СТАРТ</span><b>16 ноября 2026</b></div>
+    <div class="fact m2"><span>СЕЙЧАС</span><b>уровень A1–A2</b></div>
+    <div class="fact m3"><span>ФОРМАТ</span><b>в паре · 50 минут</b></div>
+    <div class="fact m4"><span>В ЭТАПЕ</span><b>4 модуля · 43 урока</b></div>
+  </div>
+  <div class="prog">
+    <div class="proghead"><span class="eyebrow">Ваш прогресс</span><b id="pct">0%</b></div>
+    <div class="ticks" id="ticks" role="img" aria-label="Линия прогресса: каждый штрих — урок"></div>
+    <small id="progtext">Прогресс</small>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="eyebrow">Карта</div>
+  <h2>Ваша дорога: каждая точка — урок</h2>
+  <p class="lead">Нажмите на любую точку на дороге, чтобы открыть урок. Лаймовая линия показывает, сколько дороги вы уже прошли. Фильтры подсвечивают модуль или праздники.</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="mapbox"><svg id="map" role="group" aria-label="Карта уроков"></svg></div>
+  <div id="card" aria-live="polite"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">Ваши умения</div>
+  <h2>Отмечайте то, что уже получается</h2>
+  <p class="lead">По три умения на модуль. Поставьте галочку, когда можете сделать это по-английски без подсказки. Отметки хранятся только в вашем браузере.</p>
+  <div class="total" id="total"></div>
+  <div class="cans" id="cans"></div>
+  <div class="nextstage"><div class="eyebrow">Что дальше</div><p>Когда все умения этого этапа станут привычными, начнётся этап 2: следующий уровень, новые темы и новая карта.</p></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">План</div>
+  <h2>Все уроки по датам</h2>
+  <p class="lead">Нажмите на урок, чтобы увидеть цель, слова, грамматику и домашнее задание. Даты и темы плановые: программа подстраивается под ваш темп, поэтому план может сдвигаться и меняться.</p>
+  <div class="list" id="list"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="eyebrow">В каждом уроке</div>
+  <h2>Что вы получаете</h2>
+  <div class="perks">
+    <div class="perk m1"><b>Только реальное</b><span>Настоящие истории и ваша жизнь. Без выдуманных ролевых игр.</span></div>
+    <div class="perk m2"><b>Свои аудио</b><span>Британский и американский голоса с первого занятия.</span></div>
+    <div class="perk m3"><b>Домашка под вас</b><span>Вы сами выбираете: 15, 30 или 50 минут.</span></div>
+    <div class="perk m4"><b>Виден прогресс</b><span>План, личный словарь и проверка в конце каждого модуля.</span></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">English for Life · программа для Анастасии и Антона · уроки по понедельникам и четвергам</div></footer>
+
+<script>
+const LESSONS=[{"n": 1, "date": "2026-11-16", "title": "Lesson 1 · Thirteen or Thirty?", "mod": 1, "near": 1, "topic": "Числа 11–100 в реальной жизни: выходы на посадку, цены, адреса, возраст. Числа + прилагательные", "aim": "Понимать на слух и называть числа от 11 до 100. Переспросить, если не уверены: «Sorry, one-three or three-zero?» Описать вещь числом и прилагательным: It's 54 square metres. It's small.", "words": "Числа: eleven … twenty, thirty, forty, fifty … ninety, a hundred; twenty-one … ninety-nine\nПрилагательные: big / small, old / new, old / young, hot / cold, easy / difficult, good, beautiful, favourite\nФразы: plus, minus, square metres, degrees", "grammar": "Ударение: thirTEEN – THIRty, fourTEEN – FORty\nПравописание-ловушки: twelve, fifteen, eighteen, forty\nIt's + прилагательное; Is it your…? — Yes, it is. / No, it isn't.", "how": "Парный челлендж на очки:\n• Голосовое сообщение Эммы из аэропорта: 5 чисел-ловушек\n• «Семьи» чисел и правило ударения; игра-диктовка в паре\n• Новая квартира Джека: числа 21–99 на слух, примеры вслух\n• «Моя жизнь в четырёх числах» — угадываем числа друг друга\n• Квиз с реальными фактами (падел, футбол, дайвинг, Сфинкс, марафон)\n• Спор: с какого числа квартира большая, а телефон старый?\nВ запасе (+12 мин): имена по буквам и возраст трёх реальных людей", "hw": "15 мин: числа словами + голосовое «Моя жизнь в числах»\n30 мин: + выбрать прилагательное, порядок слов\n50 мин: + текст «верно / неверно», реальная погода в 4 городах (сайт погоды)"}, {"n": 2, "date": "2026-11-19", "title": "Lesson 2 · Two Friends, One Bike", "mod": 1, "near": 1, "topic": "Реальная история: две подруги, розовый тандем и мировой рекорд. Глагол be: we / you / they", "aim": "Понять короткую реальную историю о двух людях. Рассказать о «нас» и о «них»: We're tired. They aren't sisters. Задать вопрос двоим: Are you OK? — Yes, we are.", "words": "Прилагательные: happy / sad, tired, friendly, beautiful, difficult\nИз истории: tandem, trip, country, world record, lawyer, nurse, monsoon, miles", "grammar": "be с we / you / they: We're… / They're… / We aren't… / They aren't… / Are you…? / Are they…?\nКраткие ответы: Yes, we are. / No, they aren't.\nПроизношение: слабые we're, they're; сильное are в кратком ответе", "how": "• Загадка: шесть чисел — одна история\n• Фотоальбом кругосветки Кэт Диксон и Раз Марсден (рекорд Гиннесса, 263 дня, 25 стран)\n• Сами выводим правило из текста; вопросы друг другу\n• Голосовое сообщение Эммы и Джека из Эдинбурга\n• «Мы»: что верно для вас обоих? «Они»: рассказ о двух реальных людях по фото\nВ запасе (+12 мин): настоящая статья на сайте Guinness World Records — охота за числами", "hw": "15 мин: выбрать форму + голосовое «We…» о себе и близком человеке\n30 мин: + порядок слов, сообщение Эммы «верно / неверно»\n50 мин: + исправить ошибки, подписи к трём своим фото"}, {"n": 3, "date": "2026-11-23", "title": "Lesson 3 · Meet the Family", "mod": 1, "near": 1, "topic": "Семья: слова о семье и людях", "aim": "Назвать членов семьи и сказать, кто кому кем приходится: This is my sister. Her name is…", "words": "", "grammar": "Притяжательные: my, your, his, her", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 4, "date": "2026-11-26", "title": "Lesson 4 · Our People", "mod": 1, "near": 1, "topic": "Наша семья и друзья: рассказ по реальным фото", "aim": "Рассказать о своей семье и друзьях по фото: our, their.", "words": "", "grammar": "our, their; слоги в словах", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 5, "date": "2026-11-30", "title": "Lesson 5 · How Are You, Really?", "mod": 1, "near": 1, "topic": "Короткий разговор: как начать и поддержать", "aim": "Начать короткий разговор и ответить на «How are you?» не только словом «fine».", "words": "", "grammar": "Чувства и самочувствие; ударение во фразах", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 6, "date": "2026-12-03", "title": "Lesson 6 · Small Talk, Big Deal", "mod": 1, "near": 1, "topic": "Small talk в жизни и на работе", "aim": "Поддержать small talk с новым человеком: на работе, в поездке, в гостях.", "words": "", "grammar": "Фразы для короткого разговора", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 7, "date": "2026-12-07", "title": "Lesson 7 · Ask Me Anything", "mod": 1, "near": 1, "topic": "Вопросы о людях", "aim": "Задать человеку вопросы What…? Where…? Who…? How…? и ответить на них.", "words": "", "grammar": "wh-вопросы + be: What, Where, Who, How", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 8, "date": "2026-12-10", "title": "Lesson 8 · Checkpoint 1", "mod": 1, "near": 1, "topic": "Повторение модуля 1 + мини-проверка", "aim": "Уверенно использовать всё из модуля 1 и увидеть свой прогресс в цифрах.", "words": "", "grammar": "Числа, прилагательные, be, семья, вопросы", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 9, "date": "2026-12-14", "title": "Lesson 9 · My Favourite Things", "mod": 2, "near": 2, "topic": "Любимые вещи и цвета", "aim": "Рассказать о любимых вещах и назвать цвета.", "words": "", "grammar": "Притяжательный 's", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 10, "date": "2026-12-17", "title": "Lesson 10 · Whose Is It?", "mod": 2, "near": 2, "topic": "Чьи это вещи?", "aim": "Сказать, чья это вещь: Anna's phone, my brother's car.", "words": "", "grammar": "'s; произношение 's", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 11, "date": "2026-12-21", "title": "New Year · 1", "mod": 0, "near": 2, "topic": "Новый год и Рождество — тема уточняется", "aim": "Говорить о праздниках по-английски — тему выберем вместе.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 12, "date": "2026-12-24", "title": "New Year · 2", "mod": 0, "near": 2, "topic": "Новый год и Рождество — тема уточняется", "aim": "Говорить о праздниках по-английски — тему выберем вместе.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 13, "date": "2026-12-28", "title": "New Year · 3", "mod": 0, "near": 2, "topic": "Итоги года и планы на новый год — тема уточняется", "aim": "Подвести итоги года и рассказать о планах на новый год.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 14, "date": "2027-01-11", "title": "Lesson 11 · Desk Detectives", "mod": 2, "near": 2, "topic": "Предметы на рабочем столе", "aim": "Сказать, что у вас есть: I have a laptop. We have two cars.", "words": "", "grammar": "have: I / you / we / they", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 15, "date": "2027-01-14", "title": "Lesson 12 · Do You Have…?", "mod": 2, "near": 2, "topic": "Что у нас есть?", "aim": "Спросить: Do you have…? — и ответить коротко.", "words": "", "grammar": "Вопросы с have: Do you have…?", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 16, "date": "2027-01-18", "title": "Lesson 13 · The Price Tag", "mod": 2, "near": 2, "topic": "Одежда и цены", "aim": "Назвать одежду и спросить цену: How much is it?", "words": "", "grammar": "How much is it? / are they?", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 17, "date": "2027-01-21", "title": "Lesson 14 · Shop Like a Local", "mod": 2, "near": 2, "topic": "Покупаем одежду", "aim": "Купить одежду в магазине: размер, цвет, цена.", "words": "", "grammar": "Фразы в магазине; интонация", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 18, "date": "2027-01-25", "title": "Lesson 15 · Love It or Hate It", "mod": 2, "near": 2, "topic": "Магазины: нравится / не нравится", "aim": "Сказать, что вам нравится и не нравится, и объяснить почему.", "words": "", "grammar": "Likes, dislikes, мнения", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 19, "date": "2027-01-28", "title": "Lesson 16 · Checkpoint 2", "mod": 2, "near": 2, "topic": "Повторение модуля 2 + мини-проверка", "aim": "Уверенно использовать всё из модуля 2 и увидеть свой прогресс.", "words": "", "grammar": "'s, have, покупки", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 20, "date": "2027-02-01", "title": "Lesson 17 · What's for Lunch?", "mod": 3, "near": 3, "topic": "Еда и напитки", "aim": "Назвать еду и напитки, рассказать, что вы едите.", "words": "", "grammar": "Наречия частотности: always, usually, never", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 21, "date": "2027-02-04", "title": "Lesson 18 · Always, Usually, Never", "mod": 3, "near": 3, "topic": "Что и как часто мы едим", "aim": "Сказать, как часто вы что-то делаете: always, usually, never.", "words": "", "grammar": "Наречия частотности; ударение в словах", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 22, "date": "2027-02-08", "title": "Pancake Day", "mod": 0, "near": 3, "topic": "Блинный день в Британии и Масленица", "aim": "Узнать о британской традиции и сравнить её с Масленицей.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 23, "date": "2027-02-11", "title": "Valentine's Day", "mod": 0, "near": 3, "topic": "День святого Валентина", "aim": "Говорить о людях, которые вам дороги.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 24, "date": "2027-02-15", "title": "Lesson 19 · My Day", "mod": 3, "near": 3, "topic": "Распорядок дня", "aim": "Рассказать о своём обычном дне.", "words": "", "grammar": "Present Simple: правильные глаголы", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 25, "date": "2027-02-18", "title": "Lesson 20 · What Time Is It?", "mod": 3, "near": 3, "topic": "Который час? Мой день", "aim": "Назвать время и рассказать о дне по часам.", "words": "", "grammar": "Время; he / she / it + -s", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 26, "date": "2027-02-22", "title": "Lesson 21 · A Day in Someone's Life", "mod": 3, "near": 3, "topic": "День другого человека", "aim": "Рассказать о дне другого человека: he works, she gets up…", "words": "", "grammar": "Present Simple: he / she / it", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 27, "date": "2027-02-25", "title": "Lesson 22 · Café Words", "mod": 3, "near": 3, "topic": "В кафе: слова", "aim": "Понять меню и назвать то, что есть в кафе.", "words": "", "grammar": "Can I have…?", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 28, "date": "2027-03-01", "title": "Lesson 23 · A Coffee, Please", "mod": 3, "near": 3, "topic": "Заказ в кафе", "aim": "Сделать заказ в кафе: Can I have…?", "words": "", "grammar": "Интонация в вопросах с or", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 29, "date": "2027-03-04", "title": "International Women's Day", "mod": 0, "near": 3, "topic": "Международный женский день", "aim": "Рассказать о женщинах, которые вас вдохновляют.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 30, "date": "2027-03-08", "title": "Lesson 24 · Does She…?", "mod": 3, "near": 3, "topic": "Жизнь и работа других людей", "aim": "Спросить о другом человеке: Does he…? Does she…?", "words": "", "grammar": "Present Simple: вопросы с he / she / it", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 31, "date": "2027-03-11", "title": "Lesson 25 · Checkpoint 3", "mod": 3, "near": 3, "topic": "Повторение модуля 3 + мини-проверка", "aim": "Уверенно использовать всё из модуля 3 и увидеть свой прогресс.", "words": "", "grammar": "Present Simple, время, еда", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 32, "date": "2027-03-15", "title": "St Patrick's Day", "mod": 0, "near": 3, "topic": "День святого Патрика", "aim": "Узнать, как и почему весь мир «зеленеет» 17 марта.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 33, "date": "2027-03-18", "title": "Lesson 26 · My Job, My Team", "mod": 4, "near": 4, "topic": "Работа и коллеги", "aim": "Рассказать о своей работе и коллегах.", "words": "", "grammar": "Object pronouns: me, him, her, us, them", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 34, "date": "2027-03-22", "title": "Lesson 27 · Me, Him, Her, Us", "mod": 4, "near": 4, "topic": "Хорошие коллеги", "aim": "Говорить о людях без повторов: I like him. She helps us.", "words": "", "grammar": "Object pronouns; связывание слов", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 35, "date": "2027-03-25", "title": "Easter", "mod": 0, "near": 4, "topic": "Пасха", "aim": "Сравнить пасхальные традиции в разных странах.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 36, "date": "2027-03-29", "title": "Lesson 28 · Hidden Talents", "mod": 4, "near": 4, "topic": "Что мы умеем", "aim": "Сказать, что вы умеете и не умеете: I can… / I can't…", "words": "", "grammar": "can / can't", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 37, "date": "2027-04-01", "title": "April Fools' Day", "mod": 0, "near": 4, "topic": "День смеха", "aim": "Понять и рассказать простую шутку или розыгрыш.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 38, "date": "2027-04-05", "title": "Lesson 29 · Skills at Work", "mod": 4, "near": 4, "topic": "Умения в жизни и на работе", "aim": "Рассказать о своих умениях в жизни и на работе.", "words": "", "grammar": "can: слабая и сильная формы", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 39, "date": "2027-04-08", "title": "Lesson 30 · Could You Help Me?", "mod": 4, "near": 4, "topic": "Просьбы и предложения помощи", "aim": "Вежливо попросить о помощи и предложить её.", "words": "", "grammar": "Can you…? Could you…?", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 40, "date": "2027-04-12", "title": "Lesson 31 · Favours", "mod": 4, "near": 4, "topic": "Просьбы на работе и дома", "aim": "Использовать просьбы на работе и дома.", "words": "", "grammar": "Прилагательные (2)", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 41, "date": "2027-04-15", "title": "Lesson 32 · Save the Date", "mod": 4, "near": 4, "topic": "Даты и дни рождения", "aim": "Назвать любую дату и день рождения.", "words": "", "grammar": "Порядковые числительные; месяцы", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 42, "date": "2027-04-19", "title": "Lesson 33 · Checkpoint 4", "mod": 4, "near": 4, "topic": "Повторение модуля 4 + мини-проверка", "aim": "Уверенно использовать всё из модуля 4 и увидеть свой прогресс.", "words": "", "grammar": "Object pronouns, can, даты", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}, {"n": 43, "date": "2027-04-22", "title": "Earth Day", "mod": 0, "near": 4, "topic": "День Земли", "aim": "Говорить о природе и простых привычках, которые её берегут.", "words": "", "grammar": "", "how": "", "hw": "На выбор: 15, 30 или 50 минут"}];
+const MODS=[
+ {id:1,name:'Люди вокруг нас',can:['Назвать любое число до ста и переспросить, если не расслышали','Рассказать о своей семье и друзьях','Начать короткий разговор и задать вопросы новому человеку']},
+ {id:2,name:'Вещи и покупки',can:['Рассказать о своих вещах и о том, что у вас есть','Спросить цену и купить одежду','Сказать, что нравится и не нравится, и объяснить почему']},
+ {id:3,name:'Мой день',can:['Рассказать о своём обычном дне и назвать время','Сказать, как часто вы что-то делаете','Сделать заказ в кафе']},
+ {id:4,name:'Работа и умения',can:['Рассказать о работе и коллегах','Сказать, что вы умеете и чего пока нет','Вежливо попросить о помощи и назвать любую дату']}];
+const MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+const DOW=['вс','пн','вт','ср','чт','пт','сб'];
+const D=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const fmt=s=>{const d=D(s);return d.getDate()+' '+MON[d.getMonth()]};
+const today=new Date();today.setHours(0,0,0,0);
+const DONE=0; // number of lessons already taught (updated by the teacher's assistant after each lesson)
+const passed=DONE;
+const nextL=LESSONS[DONE];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let filter='all', sel=(nextL||LESSONS[0]).n;
+
+const ticks=document.getElementById('ticks');
+LESSONS.forEach(l=>{const i=document.createElement('i');i.className='m'+l.mod+(l.n<=DONE?' on':'')+(nextL&&l.n===nextL.n?' now':'');ticks.appendChild(i)});
+document.getElementById('pct').textContent=Math.round(100*passed/LESSONS.length)+'%';
+document.getElementById('progtext').textContent='Пройдено '+passed+' из '+LESSONS.length+' уроков'+(nextL?' · следующий: '+nextL.title+', '+fmt(nextL.date):' · этап пройден, впереди этап 2');
+
+// ---------- filters
+const TABS=[['all','Вся дорога'],['1','Модуль 1'],['2','Модуль 2'],['3','Модуль 3'],['4','Модуль 4'],['0','Праздники']];
+const tabs=document.getElementById('tabs');
+TABS.forEach(([k,t])=>{const b=document.createElement('button');b.type='button';b.className='tab';b.textContent=t;b.dataset.k=k;
+  b.addEventListener('click',()=>{filter=k;paint()});tabs.appendChild(b)});
+const match=l=>filter==='all'||String(l.mod)===filter;
+
+// ---------- the road
+const NS='http://www.w3.org/2000/svg';
+const S=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e};
+const map=document.getElementById('map');let wide=null;
+function drawMap(){
+  const w=map.parentElement.clientWidth>640;if(w===wide)return;wide=w;
+  map.innerHTML='';
+  const W=w?1000:400, per=w?8:4, rowH=w?128:112, padX=w?96:78, top=w?86:80, R=rowH/2;
+  const rows=Math.ceil(LESSONS.length/per), H=top+(rows-1)*rowH+90;
+  map.setAttribute('viewBox','0 0 '+W+' '+H);
+  const xs=k=>padX+k*(W-2*padX)/(per-1);
+  const pos=LESSONS.map((l,i)=>{const r=Math.floor(i/per),k=i%per;return {x:r%2?xs(per-1-k):xs(k),y:top+r*rowH}});
+  let d='M'+(pos[0].x-40)+' '+pos[0].y;
+  for(let r=0;r<rows;r++){const y=top+r*rowH,right=r%2===0;
+    if(r<rows-1){d+=' H'+(right?xs(per-1):xs(0))+' A'+R+' '+R+' 0 0 '+(right?1:0)+' '+(right?xs(per-1):xs(0))+' '+(y+rowH)}
+    else{const last=pos[pos.length-1];d+=' H'+(last.x+(right?70:-70))}}
+  S('path',{d,fill:'none',stroke:css('--road'),'stroke-width':w?36:32,'stroke-linecap':'round','stroke-linejoin':'round'},map);
+  S('path',{d,fill:'none',stroke:css('--road-dash'),'stroke-width':2.5,'stroke-dasharray':'2 14','stroke-linecap':'round'},map);
+  // progress line: the part of the road already travelled, up to the current stop
+  const cur=Math.min(DONE,LESSONS.length-1),cr=Math.floor(cur/per);let pd='M'+(pos[0].x-40)+' '+pos[0].y;
+  for(let r=0;r<cr;r++){const y=top+r*rowH,right=r%2===0;pd+=' H'+(right?xs(per-1):xs(0))+' A'+R+' '+R+' 0 0 '+(right?1:0)+' '+(right?xs(per-1):xs(0))+' '+(y+rowH)}
+  pd+=' H'+pos[cur].x;
+  S('path',{d:pd,fill:'none',stroke:css('--pop'),'stroke-width':w?12:10,'stroke-linecap':'round','stroke-linejoin':'round'},map);
+  // exit sign: the road goes on
+  const last=pos[pos.length-1],right=(rows-1)%2===0,ex=last.x+(right?70:-70);
+  const sign=S('g',{class:'lab'},map),sw=128,sx=Math.min(W-sw-6,Math.max(6,ex-(right?0:sw)));
+  S('rect',{x:sx,y:last.y+26,width:sw,height:28,rx:14,fill:css('--pop')},sign);
+  S('text',{x:sx+sw/2,y:last.y+45,'text-anchor':'middle',fill:css('--on-pop')},sign).textContent='дальше: этап 2';
+  // module labels
+  MODS.forEach(m=>{const i=LESSONS.findIndex(l=>l.mod===m.id),p=pos[i],txt='Модуль '+m.id+' · '+m.name,tw=txt.length*7.4+24;
+    const g=S('g',{class:'lab'},map),x=Math.min(W-tw-6,Math.max(6,p.x-22));
+    S('rect',{x,y:p.y-62,width:tw,height:28,rx:14,fill:css('--c'+m.id)},g);
+    S('text',{x:x+tw/2,y:p.y-43,'text-anchor':'middle',fill:css('--o'+m.id)},g).textContent=txt});
+  // stops
+  LESSONS.forEach((l,i)=>{const p=pos[i],done=l.n<=DONE,isNext=nextL&&l.n===nextL.n;
+    const g=S('g',{class:'stop',tabindex:0,role:'button','data-n':l.n,'aria-label':l.title+', '+fmt(l.date)},map);
+    S('title',{},g).textContent=fmt(l.date)+' · '+l.title;
+    if(isNext)S('circle',{class:'pulse',cx:p.x,cy:p.y,r:20},g);
+    S('circle',{class:'ring',cx:p.x,cy:p.y,r:26,fill:'none'},g);
+    S('circle',{class:'b',cx:p.x,cy:p.y,r:18,fill:css('--c'+l.mod)},g);
+    const o=css('--o'+l.mod);
+    if(done)S('path',{d:'M'+(p.x-6)+' '+p.y+' l4 4.5 l8 -9',fill:'none',stroke:o,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round'},g);
+    else if(!l.mod)S('path',{d:star(p.x,p.y,8.5,3.8),fill:o},g);
+    else S('text',{x:p.x,y:p.y+4.5,'text-anchor':'middle',fill:o},g).textContent=l.title.match(/\d+/)[0];
+    if(isNext){const hg=S('g',{class:'here'},map),hw=74,hx=Math.min(W-hw-4,Math.max(4,p.x-hw/2));
+      S('rect',{x:hx,y:p.y+28,width:hw,height:24,rx:12,fill:css('--pop')},hg);
+      S('text',{x:hx+hw/2,y:p.y+44.5,'text-anchor':'middle',fill:css('--on-pop')},hg).textContent='вы здесь'}
+    const go=()=>{sel=l.n;paint();document.getElementById('card').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'})};
+    g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}});
+  });
+  paintMap();
+}
+function star(cx,cy,R,r){let d='';for(let i=0;i<10;i++){const a=Math.PI/5*i-Math.PI/2,q=i%2?r:R;d+=(i?'L':'M')+(cx+q*Math.cos(a)).toFixed(1)+' '+(cy+q*Math.sin(a)).toFixed(1)}return d+'Z'}
+function paintMap(){map.querySelectorAll('.stop').forEach(g=>{const l=LESSONS[+g.dataset.n-1];g.classList.toggle('dim',!match(l));g.classList.toggle('sel',l.n===sel)})}
+
+// ---------- lesson card
+function field(k,v){return v?'<div><dt>'+k+'</dt><dd>'+esc(v)+'</dd></div>':''}
+function paintCard(){
+  const l=LESSONS[sel-1],done=l.n<=DONE,isNext=nextL&&l.n===nextL.n,d=D(l.date);
+  const c=document.getElementById('card');c.className='card m'+l.mod;
+  c.innerHTML='<div class="cardtop"><span class="pill">'+(l.mod?'Модуль '+l.mod+' · '+esc(MODS[l.mod-1].name):'Праздничный урок')+'</span><span class="pill q">'+fmt(l.date)+' '+d.getFullYear()+', '+DOW[d.getDay()]+'</span><span class="pill q">'+(done?'пройден':isNext?'следующий урок':'в плане')+'</span></div>'+
+   '<h3>'+esc(l.title)+'</h3><p class="topic">'+esc(l.topic)+'</p><dl class="det">'+field('После урока вы сможете',l.aim)+field('Слова и фразы',l.words)+field('Грамматика и произношение',l.grammar)+field('Что делаем на уроке',l.how)+field('Домашнее задание',l.hw)+'</dl>'+
+   '<div class="nav"><button type="button" id="prev"'+(sel===1?' disabled':'')+'>← предыдущий</button><button type="button" id="next"'+(sel===LESSONS.length?' disabled':'')+'>следующий →</button></div>';
+  c.querySelector('#prev').addEventListener('click',()=>{if(sel>1){sel--;paint()}});
+  c.querySelector('#next').addEventListener('click',()=>{if(sel<LESSONS.length){sel++;paint()}});
+}
+
+// ---------- can-do checklist
+const cans=document.getElementById('cans');let checked=store.get('efl-can',{});
+function paintCans(){
+  cans.innerHTML='';let n=0,all=0;
+  MODS.forEach(m=>{const el=document.createElement('div');el.className='can m'+m.id;
+    const k=m.can.filter((_,i)=>checked[m.id+'-'+i]).length;n+=k;all+=m.can.length;
+    el.innerHTML='<h3>'+esc(m.name)+'<span>'+k+' из '+m.can.length+'</span></h3>'+m.can.map((t,i)=>'<label><input type="checkbox" id="can-'+m.id+'-'+i+'" data-k="'+m.id+'-'+i+'"'+(checked[m.id+'-'+i]?' checked':'')+'><span>'+esc(t)+'</span></label>').join('');
+    el.querySelectorAll('input').forEach(inp=>inp.addEventListener('change',()=>{checked[inp.dataset.k]=inp.checked;store.set('efl-can',checked);const id=inp.id;paintCans();const again=document.getElementById(id);if(again)again.focus()}));
+    cans.appendChild(el)});
+  document.getElementById('total').innerHTML='Уже умеем: <mark>'+n+' из '+all+'</mark>';
+}
+
+// ---------- plan list
+const list=document.getElementById('list');
+function paintList(){
+  list.innerHTML='';const seen={};
+  LESSONS.filter(match).forEach(l=>{
+    if(l.mod&&!seen[l.mod]&&filter!=='0'){seen[l.mod]=1;const b=document.createElement('div');b.className='band m'+l.mod;b.textContent='МОДУЛЬ '+l.mod+' · '+MODS[l.mod-1].name.toUpperCase();list.appendChild(b)}
+    const done=l.n<=DONE,isNext=nextL&&l.n===nextL.n,d=D(l.date);
+    const r=document.createElement('div');r.className='row m'+l.mod+(isNext?' next':'');
+    r.innerHTML='<button type="button" aria-expanded="false"><span class="date">'+fmt(l.date)+'<small>'+DOW[d.getDay()]+', '+d.getFullYear()+'</small></span><span class="ttl"><b>'+esc(l.title)+'</b><span>'+esc(l.topic)+'</span></span><span class="badge'+(done?' done':isNext?' nx':'')+'">'+(done?'пройден':isNext?'следующий':'в плане')+'</span></button><dl class="det" hidden>'+
+      field('После урока вы сможете',l.aim)+field('Слова и фразы',l.words)+field('Грамматика и произношение',l.grammar)+field('Что делаем на уроке',l.how)+field('Домашнее задание',l.hw)+'</dl>';
+    const btn=r.querySelector('button'),det=r.querySelector('.det');
+    btn.addEventListener('click',()=>{det.hidden=!det.hidden;btn.setAttribute('aria-expanded',String(!det.hidden));if(!det.hidden){sel=l.n;paintMap();paintCard()}});
+    list.appendChild(r)});
+}
+function paint(){tabs.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===filter)));paintMap();paintCard();paintList()}
+drawMap();paint();paintCans();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawMap,150)});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{wide=null;drawMap()});
+new MutationObserver(()=>{wide=null;drawMap()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
+</body>
+</html>
